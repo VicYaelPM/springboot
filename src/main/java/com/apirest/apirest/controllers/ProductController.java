@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apirest.apirest.models.ProductModel;
+import com.apirest.apirest.services.ProductService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.RequestParam;
@@ -19,15 +20,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/products")
 public class ProductController {
     @Autowired
-    ProductController productController;
+    ProductService productService;
 
     @GetMapping("/getAllProducts")
     public ArrayList<ProductModel> getProducts() {
-        return productController.getProducts();
+        return (ArrayList<ProductModel>) productService.getAllProducts();
     }
     
     @PostMapping()
     public ProductModel postProduct(@RequestBody ProductModel product) {
-        return productController.postProduct(product);
+        return productService.addProduct(product);
     }
 }
